@@ -24,8 +24,10 @@ SECRET_KEY = 'django-insecure-0=0^c_-+#p8lc^(dk9qucu(0woic*x&h_yx40xg2wvrii&7vcc
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ['*']
+AUTH_USER_MODEL = 'account.User'
 
-ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -37,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
+    'rest_framework.authtoken',
+
+    'document',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +56,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
 
 ROOT_URLCONF = 'pdm.urls'
 
